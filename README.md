@@ -4,9 +4,8 @@ TheGraph exposes a GraphQL endpoint to query the events and entities within the 
 
 Currently, there are multiple subgraphs, but additional subgraphs can be added to this repo:
 
-1. **[Pairs](https://thegraph.com/explorer/subgraph/paintswap/pairs)**: Tracks all PaintSwap Pairs and Tokens.
-
-2. **[Exchange](https://thegraph.com/explorer/subgraph/paintswap/exchange)**: Tracks all PaintSwap Exchange data with price, volume, liquidity, ...
+1. **[Exchange](https://thegraph.com/explorer/subgraph/paint-swap-finance/exchange)**: Tracks all PaintSwap Exchange data with price, volume, liquidity, ...  
+2. **[Brush](https://thegraph.com/explorer/subgraph/paint-swap-finance/brush)**: Tracks data about the brush token
 
 ## To setup and deploy
 
