@@ -1,0 +1,26 @@
+specVersion: 0.0.2
+description: BrushToken is a decentralized coin for the PaintSwap AMM on Fantom Opera.
+repository: https://github.com/paintswap
+schema:
+  file: ./brush.graphql
+dataSources:
+- kind: ethereum/contract
+  name: BrushToken
+  network: fantom
+  source:
+    address: "0x85dec8c4B2680793661bCA91a8F129607571863d"
+    abi: BEP20
+    startBlock: 7756481
+  mapping:
+    kind: ethereum/events
+    apiVersion: 0.0.1
+    language: wasm/assemblyscript
+    entities:
+    - BrushToken
+    abis:
+    - name: BEP20
+      file: ../abis/BEP20.json
+    eventHandlers:
+    - event: Transfer(indexed address,indexed address,uint256)
+      handler: handleTransfer
+    file: ../src/token/brush.ts

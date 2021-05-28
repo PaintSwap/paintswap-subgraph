@@ -1,0 +1,41 @@
+{
+  "name": "paint-subgraph",
+  "description": "PaintSwap Subgraph",
+  "version": "2.0.0",
+  "repository": "git@github.com:paintswap/paintswap-subgraph.git",
+  "author": "PaintSwap",
+  "license": "MIT",
+  "scripts": {
+    "codegen:exchange": "graph codegen subgraphs/exchange.yaml",
+    "codegen:pairs": "graph codegen subgraphs/pairs.yaml",
+    "codegen:brush": "graph codegen subgraphs/brush.yaml",
+    "build:exchange": "graph build subgraphs/exchange.yaml",
+    "build:pairs": "graph build subgraphs/pairs.yaml",
+	"build:brush": "graph build subgraphs/brush.yaml",
+    "deploy:exchange": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ paint-swap-finance/exchange subgraphs/exchange.yaml",
+    "deploy:pairs": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ paint-swap-finance/pairs subgraphs/pairs.yaml",
+    "deploy:brush": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ paint-swap-finance/brush subgraphs/brush.yaml",
+    "format:check": "prettier --check '*/**/*.{js,ts}'",
+    "format:write": "prettier --write '*/**/*.{js,ts}'",
+    "lint": "eslint '*/**/*.{js,ts}'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format:write",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.3",
+    "@commitlint/config-conventional": "^12.1.3",
+    "@graphprotocol/graph-cli": "^0.20.0",
+    "@graphprotocol/graph-ts": "^0.20.0",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^4.3.8",
+    "prettier": "^2.3.0",
+    "typescript": "^4.2.4"
+  }
+}

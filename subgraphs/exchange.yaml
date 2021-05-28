@@ -1,0 +1,63 @@
+specVersion: 0.0.2
+description: PaintSwap is a decentralized protocol for automated token exchange on Fantom.
+repository: https://github.com/paintswap
+schema:
+  file: ./exchange.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Factory
+    network: fantom
+    source:
+      address: '0x733A9D1585f2d14c77b49d39BC7d7dd14CdA4aa5'
+      abi: Factory
+      startBlock: 6725911
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ../src/exchange/factory.ts
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: Factory
+          file: ../abis/Factory.json
+        - name: BEP20
+          file: ../abis/BEP20.json
+        - name: BEP20NameBytes
+          file: ../abis/BEP20NameBytes.json
+        - name: BEP20SymbolBytes
+          file: ../abis/BEP20SymbolBytes.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: handlePairCreated
+templates:
+  - kind: ethereum/contract
+    name: Pair
+    network: fantom
+    source:
+      abi: Pair
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ../src/exchange/core.ts
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: Factory
+          file: ../abis/Factory.json
+        - name: Pair
+          file: ../abis/Pair.json
+      eventHandlers:
+        - event: Mint(indexed address,uint256,uint256)
+          handler: handleMint
+        - event: Burn(indexed address,uint256,uint256,indexed address)
+          handler: handleBurn
+        - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
+          handler: handleSwap
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Sync(uint112,uint112)
+          handler: handleSync

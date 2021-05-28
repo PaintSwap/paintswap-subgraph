@@ -1,0 +1,7 @@
+# BrushToken
+type BrushToken @entity {
+  id: ID!
+
+  "TotalBurned"
+  totalBurned: BigInt!
+}

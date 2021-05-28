@@ -1,0 +1,34 @@
+specVersion: 0.0.1
+description: PaintSwap is a decentralized protocol for automated token exchange on Fantom Opera.
+repository: https://github.com/paintswap
+schema:
+  file: ./pairs.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Factory
+    network: fantom
+    source:
+      address: '0x733A9D1585f2d14c77b49d39BC7d7dd14CdA4aa5'
+      abi: Factory
+      startBlock: 6959952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ../src/pairs/factory.ts
+      entities:
+        - Factory
+        - Pair
+        - Token
+      abis:
+        - name: Factory
+          file: ../abis/Factory.json
+        - name: BEP20
+          file: ../abis/BEP20.json
+        - name: BEP20NameBytes
+          file: ../abis/BEP20NameBytes.json
+        - name: BEP20SymbolBytes
+          file: ../abis/BEP20SymbolBytes.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: handlePairCreated
