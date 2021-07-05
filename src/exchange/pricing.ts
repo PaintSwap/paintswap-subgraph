@@ -16,15 +16,13 @@ export function getFtmPriceInUSD(): BigDecimal {
   }
 }
 
-export function getBrushPriceInUSD()
-
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
   "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83", // WFTM
   "0x04068da6c83afcfa0e13ba15a6696662335d5b75", // USDC
   "0x74b23882a30290451a17c44f4f05243b6b58c76d", // WETH
   "0x321162cd933e2be498cd2267a90534a804051b11", // WBTC
-  ""
+  "0x85dec8c4b2680793661bca91a8f129607571863d"  // BRUSH
 ];
 
 // minimum liquidity for price to get tracked
